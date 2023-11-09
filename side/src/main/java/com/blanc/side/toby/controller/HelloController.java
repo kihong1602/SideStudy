@@ -17,6 +17,11 @@ public class HelloController {
 
   @GetMapping("/hello")
   public String hello(String name) {
+    if (name == null) {
+      throw new NullPointerException();
+    } else if (name.isEmpty()) {
+      throw new IllegalArgumentException();
+    }
     return helloService.sayHello(name);
   }
 }
