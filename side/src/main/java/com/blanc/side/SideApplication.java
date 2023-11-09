@@ -1,7 +1,6 @@
 package com.blanc.side;
 
 import com.blanc.side.toby.controller.HelloController;
-import com.blanc.side.toby.service.HelloService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,21 +12,27 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
 
 public class SideApplication {
 
   public static void main(String[] args) {
+    GenericWebApplicationContext applicationContext = new GenericWebApplicationContext();
+    applicationContext.registerBean(HelloController.class);
+    applicationContext.refresh();
+
     ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
     WebServer webServer = serverFactory.getWebServer(servletContext -> {
 
-      HelloController helloController = new HelloController(new HelloService());
       servletContext.addServlet("hello", new HttpServlet() {
         @Override
         protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
           if (request.getRequestURI().equals("/hello") && request.getMethod().equals(HttpMethod.GET.name())) {
             String name = request.getParameter("name");
+
+            HelloController helloController = applicationContext.getBean(HelloController.class);
 
             String helloMsg = helloController.hello(name);
 
