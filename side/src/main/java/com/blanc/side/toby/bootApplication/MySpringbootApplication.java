@@ -2,11 +2,9 @@ package com.blanc.side.toby.bootApplication;
 
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-@ComponentScan
 public class MySpringbootApplication {
 
   public static void run(Class<?> applicationClass, String... args) {
