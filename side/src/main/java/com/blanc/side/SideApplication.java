@@ -1,14 +1,13 @@
 package com.blanc.side;
 
-import com.blanc.side.toby.bootApplication.MySpringbootApplication;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.SpringApplication;
 
 
-@ComponentScan
+@MySpringbootAnnotation
 public class SideApplication {
 
   public static void main(String[] args) {
-    MySpringbootApplication.run(SideApplication.class, args);
+    SpringApplication.run(SideApplication.class, args);
 
   }
 
