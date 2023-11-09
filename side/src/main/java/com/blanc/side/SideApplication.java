@@ -1,27 +1,26 @@
 package com.blanc.side;
 
-import com.blanc.side.toby.controller.HelloController;
-import com.blanc.side.toby.service.HelloService;
-import com.blanc.side.toby.service.SimpleHelloService;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServer;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
 @Configuration
+@ComponentScan
 public class SideApplication {
 
   @Bean
-  public HelloController helloController(HelloService helloService) {
-    return new HelloController(helloService);
+  public ServletWebServerFactory serverFactory() {
+    return new TomcatServletWebServerFactory();
   }
 
   @Bean
-  public HelloService helloService() {
-    return new SimpleHelloService();
+  public DispatcherServlet dispatcherServlet() {
+    return new DispatcherServlet();
   }
 
   public static void main(String[] args) {
@@ -30,10 +29,10 @@ public class SideApplication {
       protected void onRefresh() {
         super.onRefresh();
 
-        ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
-        WebServer webServer = serverFactory.getWebServer(servletContext -> {
-          servletContext.addServlet("DispatcherServlet", new DispatcherServlet(this)).addMapping("/*");
-        });
+        ServletWebServerFactory serverFactory = this.getBean(ServletWebServerFactory.class);
+        DispatcherServlet dispatcherServlet = this.getBean(DispatcherServlet.class);
+        WebServer webServer = serverFactory.getWebServer(
+            servletContext -> servletContext.addServlet("DispatcherServlet", dispatcherServlet).addMapping("/*"));
         webServer.start();
 
       }
