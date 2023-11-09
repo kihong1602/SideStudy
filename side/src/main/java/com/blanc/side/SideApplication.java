@@ -21,6 +21,8 @@ public class SideApplication {
         @Override
         protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+          String name = request.getParameter("name");
+
           response.setStatus(HttpStatus.OK.value());
           response.setContentType(MediaType.TEXT_PLAIN_VALUE);
           response.getWriter().write("Hello SpringBoot");
