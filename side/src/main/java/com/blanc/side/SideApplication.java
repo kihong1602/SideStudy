@@ -1,6 +1,7 @@
 package com.blanc.side;
 
 import com.blanc.side.toby.controller.HelloController;
+import com.blanc.side.toby.service.SimpleHelloService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ public class SideApplication {
   public static void main(String[] args) {
     GenericWebApplicationContext applicationContext = new GenericWebApplicationContext();
     applicationContext.registerBean(HelloController.class);
+    applicationContext.registerBean(SimpleHelloService.class);
     applicationContext.refresh();
 
     ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();

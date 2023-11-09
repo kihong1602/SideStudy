@@ -1,8 +1,7 @@
 package com.blanc.side.toby.service;
 
-public class HelloService {
+public interface HelloService {
 
-  public String sayHello(String name) {
-    return "Hello " + name;
-  }
+  String sayHello(String name);
+
 }
