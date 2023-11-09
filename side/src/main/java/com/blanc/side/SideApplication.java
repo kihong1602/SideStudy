@@ -1,13 +1,18 @@
 package com.blanc.side;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServer;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 
-@SpringBootApplication
+
 public class SideApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SideApplication.class, args);
-	}
+  public static void main(String[] args) {
+    ServletWebServerFactory serverFactory = new TomcatServletWebServerFactory();
+    WebServer webServer = serverFactory.getWebServer(servletContext -> {
+			//Servlet 등록할 공간
+    });
+    webServer.start();
+  }
 
 }
