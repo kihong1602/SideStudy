@@ -2,12 +2,12 @@ package com.blanc.spring.config;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.boot.context.annotation.ImportCandidates;
 import org.springframework.context.annotation.DeferredImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.lang.NonNull;
 
-public class MyAutoConfigImportSelector implements DeferredImportSelector{
+public class MyAutoConfigImportSelector implements DeferredImportSelector {
 
   private final ClassLoader classLoader;
 
@@ -15,8 +15,9 @@ public class MyAutoConfigImportSelector implements DeferredImportSelector{
     this.classLoader = classLoader;
   }
 
+  @NonNull
   @Override
-  public String[] selectImports(AnnotationMetadata importingClassMetadata) {
+  public String[] selectImports(@NonNull AnnotationMetadata importingClassMetadata) {
     List<String> autoConfigs = new ArrayList<>();
     ImportCandidates.load(MyAutoConfiguration.class, classLoader).forEach(autoConfigs::add);
 
