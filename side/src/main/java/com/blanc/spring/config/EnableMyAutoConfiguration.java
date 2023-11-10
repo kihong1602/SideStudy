@@ -1,7 +1,5 @@
 package com.blanc.spring.config;
 
-import com.blanc.spring.config.autoConfig.DispatcherServletConfig;
-import com.blanc.spring.config.autoConfig.TomcatWebServerConfig;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -10,7 +8,7 @@ import org.springframework.context.annotation.Import;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Import({DispatcherServletConfig.class, TomcatWebServerConfig.class})
+@Import(MyAutoConfigImportSelector.class)
 public @interface EnableMyAutoConfiguration {
 
 }
