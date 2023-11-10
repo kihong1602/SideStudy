@@ -1,5 +1,6 @@
 package com.blanc.side;
 
+import com.blanc.spring.config.MySpringbootApplication;
 import org.springframework.boot.SpringApplication;
 
 
@@ -10,5 +11,5 @@ public class SideApplication {
     SpringApplication.run(SideApplication.class, args);
 
   }
-  
+
 }
