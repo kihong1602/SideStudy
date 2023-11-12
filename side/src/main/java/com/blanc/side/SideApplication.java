@@ -2,6 +2,7 @@ package com.blanc.side;
 
 import com.blanc.spring.config.MySpringbootApplication;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @MySpringbootApplication
