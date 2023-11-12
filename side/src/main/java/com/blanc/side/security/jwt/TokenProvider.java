@@ -39,7 +39,7 @@ public class TokenProvider implements InitializingBean {
   /**
    * Bean이 생성되고 주입을 받은 후에 secret 값을 Base64 Decode해서 Key변수에 할당하기 위함.
    */
-  public TokenProvider(@Value("${secret}") String secret,
+  public TokenProvider(@Value("${jwt.secret}") String secret,
       @Value("${jwt.token-validity-in-seconds}") long tokenValidityInMilliseconds) {
     this.secret = secret;
     this.tokenValidityInMilliseconds = tokenValidityInMilliseconds;
@@ -68,7 +68,9 @@ public class TokenProvider implements InitializingBean {
                .compact();
   }
 
-  /** token에 담겨있는 정보를 이용해 Authentication객체를 리턴하는 메서드*/
+  /**
+   * token에 담겨있는 정보를 이용해 Authentication객체를 리턴하는 메서드
+   */
   public Authentication getAuthentication(String token) {
     Claims claims = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
 
