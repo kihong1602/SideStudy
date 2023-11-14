@@ -1,13 +1,15 @@
 package com.blanc.spring.config.autoConfig;
 
+import com.blanc.spring.config.MyConfigurationProperties;
 import org.springframework.beans.factory.annotation.Value;
 
+@MyConfigurationProperties(prefix = "server")
 public class ServerProperties {
 
-  @Value("${contextPath}")
+  @Value("${server.contextPath}")
   private String contextPath;
 
-  @Value("${port}")
+  @Value("${server.port}")
   private int port;
 
   public String getContextPath() {
