@@ -28,6 +28,9 @@ dependencies {
 //    }
 //    implementation 'org.springframework.boot:spring-boot-starter-jetty:3.1.5'
 //    implementation 'jakarta.platform:jakarta.jakartaee-api:9.1.0'
+    implementation 'org.springframework:spring-jdbc'
+    runtimeOnly 'com.h2database:h2:2.1.214'
+    implementation('com.zaxxer:HikariCP:4.0.3')
 
 
     compileOnly 'org.projectlombok:lombok'
