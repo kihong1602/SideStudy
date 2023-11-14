@@ -1,3 +1,5 @@
 com.blanc.spring.config.autoConfig.TomcatWebServerConfig
 com.blanc.spring.config.autoConfig.JettyWebServerConfig
 com.blanc.spring.config.autoConfig.DispatcherServletConfig
+com.blanc.spring.config.autoConfig.PropertyPlaceholderConfig
+com.blanc.spring.config.autoConfig.ServerPropertiesConfig

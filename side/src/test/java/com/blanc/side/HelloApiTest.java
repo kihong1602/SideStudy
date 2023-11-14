@@ -17,7 +17,7 @@ public class HelloApiTest {
   @Test
   void SuccessHelloApi() {
     TestRestTemplate template = new TestRestTemplate();
-    ResponseEntity<String> res = template.getForEntity("http://localhost:8080/hello?name={name}", String.class,
+    ResponseEntity<String> res = template.getForEntity("http://localhost:9090/app/hello?name={name}", String.class,
                                                        "Spring");
 
     assertThat(res.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -28,7 +28,7 @@ public class HelloApiTest {
   @Test
   void FailHelloApi() {
     TestRestTemplate template = new TestRestTemplate();
-    ResponseEntity<String> res = template.getForEntity("http://localhost:8080/hello?name=", String.class);
+    ResponseEntity<String> res = template.getForEntity("http://localhost:9090/app/hello?name=", String.class);
 
     assertThat(res.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
   }
